@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <center>    <h:outputText value="Listado de Conceptos"></h:outputText> </center>
+        </ui:define>
+        <ui:define name="body">
+            <center>
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListListaEmpty}" rendered="#{listaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{listaController.items.rowCount > 0}">
+                    <h:outputText value="#{listaController.pagination.pageFirstItem + 1}..#{listaController.pagination.pageLastItem + 1}/#{listaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{listaController.previous}" value="#{bundle.Previous} #{listaController.pagination.pageSize}" rendered="#{listaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{listaController.next}" value="#{bundle.Next} #{listaController.pagination.pageSize}" rendered="#{listaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{listaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaTitle_idLista}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLista}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaTitle_definicion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.definicion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaTitle_concepto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.concepto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListListaTitle_tema}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tema}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{listaController.prepareView}" value="REPORTE"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{listaController.prepareEdit}" value="EDITAR"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{listaController.destroy}" value="ELIMINAR"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandButton action="#{listaController.prepareCreate}" value="Crear nuevos Conceptos"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="Menú Principal"/>
+            </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <center>  <h:outputText value="Vista de Conceptos"></h:outputText> </center>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <center>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewListaLabel_idLista}"/>
+                    <h:outputText value="#{listaController.selected.idLista}" title="#{bundle.ViewListaTitle_idLista}"/>
+                    <h:outputText value="#{bundle.ViewListaLabel_definicion}"/>
+                    <h:outputText value="#{listaController.selected.definicion}" title="#{bundle.ViewListaTitle_definicion}"/>
+                    <h:outputText value="#{bundle.ViewListaLabel_concepto}"/>
+                    <h:outputText value="#{listaController.selected.concepto}" title="#{bundle.ViewListaTitle_concepto}"/>
+                    <h:outputText value="#{bundle.ViewListaLabel_tema}"/>
+                    <h:outputText value="#{listaController.selected.tema}" title="#{bundle.ViewListaTitle_tema}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandButton action="#{listaController.destroyAndView}" value="Eliminar"/>
+                <br />
+                <br />
+                <h:button outcome="Edit" value="Editar"/>
+                <br />
+                <br />
+                <h:commandButton action="#{listaController.prepareCreate}" value="Crear un nuevo Concepto" />
+                <br />
+                <br />
+                <h:commandButton action="#{listaController.prepareList}" value="Listado de Conceptos"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="Menú Principal"/>
+
+            </h:form>
+        </center>
+        </ui:define>
+    </ui:composition>
+
+</html>

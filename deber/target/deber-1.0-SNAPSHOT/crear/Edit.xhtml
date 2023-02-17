@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <center>  <h:outputText value="Editar Conceptos"></h:outputText> </center>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <center>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCrearLabel_idCrear}" for="idCrear" />
+                    <h:inputText id="idCrear" value="#{crearController.selected.idCrear}" title="#{bundle.EditCrearTitle_idCrear}" required="true" requiredMessage="#{bundle.EditCrearRequiredMessage_idCrear}"/>
+                    <h:outputLabel value="#{bundle.EditCrearLabel_tema}" for="tema" />
+                    <h:inputText id="tema" value="#{crearController.selected.tema}" title="#{bundle.EditCrearTitle_tema}" required="true" requiredMessage="#{bundle.EditCrearRequiredMessage_tema}"/>
+                    <h:outputLabel value="#{bundle.EditCrearLabel_docente}" for="docente" />
+                    <h:inputText id="docente" value="#{crearController.selected.docente}" title="#{bundle.EditCrearTitle_docente}" required="true" requiredMessage="#{bundle.EditCrearRequiredMessage_docente}"/>
+                </h:panelGrid>
+                <h:commandButton action="#{crearController.update}" value="Guardar"/>
+                <br />
+                <br />
+                <h:commandButton action="#{crearController.prepareList}" value="Crear un nuevo Concepto" immediate="true"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="Menú Principal" />
+            </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+
+</html>

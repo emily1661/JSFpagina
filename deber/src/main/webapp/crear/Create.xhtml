@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <center>  <h:outputText value="Crear nuevo Temas"></h:outputText></center>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <center>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCrearLabel_idCrear}" for="idCrear" />
+                    <h:inputText id="idCrear" value="#{crearController.selected.idCrear}" title="#{bundle.CreateCrearTitle_idCrear}" required="true" requiredMessage="#{bundle.CreateCrearRequiredMessage_idCrear}"/>
+                    <h:outputLabel value="#{bundle.CreateCrearLabel_tema}" for="tema" />
+                    <h:inputText id="tema" value="#{crearController.selected.tema}" title="#{bundle.CreateCrearTitle_tema}" required="true" requiredMessage="#{bundle.CreateCrearRequiredMessage_tema}"/>
+                    <h:outputLabel value="#{bundle.CreateCrearLabel_docente}" for="docente" />
+                    <h:inputText id="docente" value="#{crearController.selected.docente}" title="#{bundle.CreateCrearTitle_docente}" required="true" requiredMessage="#{bundle.CreateCrearRequiredMessage_docente}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandButton action="#{crearController.create}" value="Guardar" />
+                <br />
+                <br />
+                <h:commandButton action="#{crearController.prepareList}" value="Listado de Temas" immediate="true"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="Menú Principal"/>
+            </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+
+</html>

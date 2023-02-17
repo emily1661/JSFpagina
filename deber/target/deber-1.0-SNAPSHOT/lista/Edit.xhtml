@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <center>    <h:outputText value="#Editar Conceptos"></h:outputText> </center>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <center>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditListaLabel_idLista}" for="idLista" />
+                    <h:inputText id="idLista" value="#{listaController.selected.idLista}" title="#{bundle.EditListaTitle_idLista}" required="true" requiredMessage="#{bundle.EditListaRequiredMessage_idLista}"/>
+                    <h:outputLabel value="#{bundle.EditListaLabel_definicion}" for="definicion" />
+                    <h:inputText id="definicion" value="#{listaController.selected.definicion}" title="#{bundle.EditListaTitle_definicion}" required="true" requiredMessage="#{bundle.EditListaRequiredMessage_definicion}"/>
+                    <h:outputLabel value="#{bundle.EditListaLabel_concepto}" for="concepto" />
+                    <h:inputText id="concepto" value="#{listaController.selected.concepto}" title="#{bundle.EditListaTitle_concepto}" required="true" requiredMessage="#{bundle.EditListaRequiredMessage_concepto}"/>
+                    <h:outputLabel value="#{bundle.EditListaLabel_tema}" for="tema" />
+                    <h:selectOneMenu id="tema" value="#{listaController.selected.tema}" title="#{bundle.EditListaTitle_tema}" required="true" requiredMessage="#{bundle.EditListaRequiredMessage_tema}">
+                        <f:selectItems value="#{crearController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton action="#{listaController.update}" value="Guardar"/>
+                <br />
+                <br />
+                <h:button outcome="View" value="Reporte"/>
+                <br />
+                <br />
+                <h:commandButton action="#{listaController.prepareList}" value="Listado de Conceptos" immediate="true"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="Menú Principal" />
+            </h:form>
+            </center>
+        </ui:define>
+    </ui:composition>
+
+</html>
